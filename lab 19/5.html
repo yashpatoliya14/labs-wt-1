@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 5</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <textarea id="textarea">
+    </textarea>
+    <button id="button">
+        count
+    </button>
+    <p id="displayCount"></p>
+    <script>
+        $(document).ready(
+            $("#button").click(function () {
+                $("#displayCount")
+                .text(
+                    $("#textarea")
+                    .val()
+                    .trim()
+                    .length
+                )
+            })
+        )
+    </script>
+</body>
+
+</html>

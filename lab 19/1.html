@@ -1,0 +1,28 @@
+<!-- Using jQuery, write a script that listens for a click event on the button. (A) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <button id="button">
+        click me
+    </button>
+    <p id="isclick"></p>
+    <script>
+        $(document).ready(
+            function(){
+                $('#button').click(
+                    function(){
+                        $('#isclick').text("button clicked")
+                    }
+                )
+            }
+        )
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!-- 3. Write a jQuery script that adds a click event handler to each list item. (B) -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 3</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <ul>
+        <li>List Item 1</li>
+        <li>List Item 2</li>
+        <li>List Item 3</li>
+    </ul>
+    <script>
+        $(document).ready(
+            function () {
+                $('li').click(function () {
+                    $(this).css('background-color', 'yellow')
+                        .slideUp(400, function () {
+                            $(this).fadeOut();
+                        });
+                });
+            }
+        )
+    </script>
+</body>
+
+</html>
