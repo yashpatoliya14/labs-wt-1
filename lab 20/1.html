@@ -10,132 +10,16 @@ clicked. (A) -->
 </head>
 
 <body>
-
-  <!-- A1 & A2: Button and Paragraph -->
-  <h2>Animate Button</h2>
-  <button id="animateBtn">Click to Move</button>
-  <p id="statusPara"></p>
-
-  <hr>
-
-  <!-- B3: Accordion -->
-  <h2>Accordion Example</h2>
-  <div class="accordion">
-    <h3 class="accordion-header">Section 1</h3>
-    <div class="accordion-content">Content for Section 1</div>
-
-    <h3 class="accordion-header">Section 2</h3>
-    <div class="accordion-content">Content for Section 2</div>
-
-    <h3 class="accordion-header">Section 3</h3>
-    <div class="accordion-content">Content for Section 3</div>
-  </div>
-
-  <hr>
-
-  <!-- B4: Image Carousel -->
-  <h2>Image Carousel</h2>
-  <div class="carousel-container">
-    <button id="prev">Previous</button>
-    <div class="carousel">
-      <img src="https://via.placeholder.com/150?text=1" class="carousel-img">
-      <img src="https://via.placeholder.com/150?text=2" class="carousel-img">
-      <img src="https://via.placeholder.com/150?text=3" class="carousel-img">
-    </div>
-    <button id="next">Next</button>
-  </div>
-
-  <hr>
-
-  <!-- C5: Form Validation -->
-  <h2>Form Validation</h2>
-  <form id="myForm">
-    <input type="text" id="name" placeholder="Name">
-    <span class="error" id="nameError"></span><br>
-
-    <input type="email" id="email" placeholder="Email">
-    <span class="error" id="emailError"></span><br>
-
-    <button type="submit">Submit</button>
-  </form>
+<button id="moveBtn">Click Me</button>
 
 </body>
 <script>
-    $(document).ready(function() {
-
-// (A1) Animate button on click
-$('#animateBtn').click(function() {
-  $(this).animate({ left: '+=200px' }, 500);
-  $('#statusPara').text('Button moved!');
-});
-
-// (B3) Accordion toggle
-$('.accordion-header').click(function() {
-  $(this).next('.accordion-content').slideToggle()
-         .siblings('.accordion-content').slideUp();
-});
-
-// (B4) Image carousel
-let currentIndex = 0;
-const images = $('.carousel-img');
-const totalImages = images.length;
-
-function updateCarousel() {
-  $('.carousel').css('transform', `translateX(-${150 * currentIndex}px)`);
-}
-
-$('#next').click(function() {
-  if (currentIndex < totalImages - 1) {
-    currentIndex++;
-    updateCarousel();
-  }
-});
-
-$('#prev').click(function() {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateCarousel();
-  }
-});
-
-// Optional: Auto scroll
-setInterval(function() {
-  currentIndex = (currentIndex + 1) % totalImages;
-  updateCarousel();
-}, 3000);
-
-// (C5) Form Validation
-$('#myForm').submit(function(e) {
-  e.preventDefault();
-
-  let valid = true;
-
-  const name = $('#name').val().trim();
-  const email = $('#email').val().trim();
-
-  if (name === '') {
-    $('#nameError').text('Name is required.');
-    valid = false;
-  } else {
-    $('#nameError').text('');
-  }
-
-  if (email === '') {
-    $('#emailError').text('Email is required.');
-    valid = false;
-  } else if (!/^\S+@\S+\.\S+$/.test(email)) {
-    $('#emailError').text('Enter a valid email.');
-    valid = false;
-  } else {
-    $('#emailError').text('');
-  }
-
-  if (valid) {
-    alert('Form submitted successfully!');
-  }
-});
-
-});
-
+  $(document).ready(function(){
+    $("#moveBtn").click(function(){
+      $(this).animate({
+        marginLeft: '+=200px'
+      }, 500); // 500ms animation duration
+    });
+  });
 </script>
 </html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Form Validation</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .error { color: red; font-size: 0.9em; }
+    .input-field { margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form id="myForm">
+  <div class="input-field">
+    <label>Name:</label><br>
+    <input type="text" id="name"><br>
+    <span class="error" id="name-error"></span>
+  </div>
+
+  <div class="input-field">
+    <label>Email:</label><br>
+    <input type="text" id="email"><br>
+    <span class="error" id="email-error"></span>
+  </div>
+
+  <div class="input-field">
+    <label>Password:</label><br>
+    <input type="password" id="password"><br>
+    <span class="error" id="password-error"></span>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+$(document).ready(function () {
+  $('#myForm').submit(function (e) {
+    e.preventDefault(); // Prevent actual form submission
+
+    let valid = true;
+
+    // Clear previous errors
+    $('.error').text('');
+
+    // Name validation
+    let name = $('#name').val().trim();
+    if (name === '') {
+      $('#name-error').text('Name is required.');
+      valid = false;
+    }
+
+    // Email validation
+    let email = $('#email').val().trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email === '') {
+      $('#email-error').text('Email is required.');
+      valid = false;
+    } else if (!emailRegex.test(email)) {
+      $('#email-error').text('Invalid email format.');
+      valid = false;
+    }
+
+    // Password validation
+    let password = $('#password').val();
+    if (password.length < 6) {
+      $('#password-error').text('Password must be at least 6 characters.');
+      valid = false;
+    }
+
+    if (valid) {
+      alert('Form submitted successfully!');
+      // Optionally: this.submit(); to allow actual submission
+    }
+  });
+});
+</script>
+
+</body>
+</html>

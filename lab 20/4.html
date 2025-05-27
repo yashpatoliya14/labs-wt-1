@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Image Carousel</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .carousel-img { display:none; }          /* hide all by default   */
+    .carousel-container { display:inline-flex; align-items:center; gap:1rem; }
+  </style>
+</head>
+<body>
+
+  <h2>Image Carousel</h2>
+
+  <div class="carousel-container">
+    <button id="prev">Previous</button>
+
+    <div class="carousel">
+      <img width="300"
+           src="https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg?auto=compress&cs=tinysrgb&h=300"
+           class="carousel-img">
+      <img width="300"
+           src="https://static.vecteezy.com/system/resources/thumbnails/006/965/779/small/empty-top-wooden-table-and-sakura-flower-with-fog-and-morning-light-background-photo.jpg"
+           class="carousel-img">
+      <img width="300"
+           src="https://static.vecteezy.com/system/resources/thumbnails/030/470/010/small/empty-wooden-deck-table-top-over-misty-landscape-background-product-display-montage-ai-generated-photo.jpg"
+           class="carousel-img">
+    </div>
+
+    <button id="next">Next</button>
+  </div>
+
+  <script>
+    $(function () {
+      /* ------------ setup ------------ */
+      let currentIndex = 0;
+      const $imgs = $(".carousel-img");
+      const length   = $imgs.length;
+      const FADE_MS  = 600;
+      const DELAY_MS = 3000;
+
+      $imgs.eq(currentIndex).show();   // show first image
+
+      /* ------------ helpers ------------ */
+      function show(index) {
+        $imgs.eq(currentIndex).fadeOut(FADE_MS, () => {
+          currentIndex = index;
+          $imgs.eq(currentIndex).fadeIn(FADE_MS);
+        });
+      }
+
+      function next() { show((currentIndex + 1) % length); }
+      function prev() { show((currentIndex - 1 + length) % length); }
+
+      /* ------------ click handlers ------------ */
+      $("#next").on("click",  resetTimer(next));
+      $("#prev").on("click",  resetTimer(prev));
+
+      /* ------------ auto-scroll ------------ */
+      let timer = setInterval(next, DELAY_MS);
+
+      function resetTimer(fn) {
+        // returns a wrapper that calls fn and restarts the interval
+        return function () {
+          clearInterval(timer);
+          fn();
+          timer = setInterval(next, DELAY_MS);
+        };
+      }
+    });
+  </script>
+</body>
+</html>

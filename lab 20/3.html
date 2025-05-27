@@ -1,0 +1,46 @@
+<!-- Create an HTML file with a button element and an empty paragraph element. Use jQuery 
+to write a script that listens for a click event on the button. (A)  -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Examples</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <hr>
+
+    <!-- B3: Accordion -->
+    <h2>Accordion Example</h2>
+    <div class="accordion">
+        <h3 class="accordion-header">Section 1</h3>
+        <div class="accordion-content">Content for Section 1</div>
+
+        <h3 class="accordion-header">Section 2</h3>
+        <div class="accordion-content">Content for Section 2</div>
+
+        <h3 class="accordion-header">Section 3</h3>
+        <div class="accordion-content">Content for Section 3</div>
+    </div>
+
+    <hr>
+
+</body>
+<script>
+    $(document).ready(function () {
+        $(".accordion-header").click(function(){
+            $(this).next('.accordion-content')
+            .toggle()
+            .siblings('.accordion-content')
+            .hide()
+        })
+        $(".accordion-content").hide()
+
+    });
+
+</script>
+
+</html>
